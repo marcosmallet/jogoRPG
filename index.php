@@ -40,3 +40,13 @@ function CriarOrc(){
 	$orc->arma->defesa = 0;
 	$orc->arma->numeroFacesDado = 8;		
 }
+
+function PrepararJogo()
+{
+	global $humano, $orc, $contRodada;
+	CriarHumano();
+	CriarOrc();
+	$contRodada = 0;
+}
+
+PrepararJogo();
