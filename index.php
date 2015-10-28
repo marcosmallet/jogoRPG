@@ -49,4 +49,46 @@ function PrepararJogo()
 	$contRodada = 0;
 }
 
+function IniciaBatalha()
+{
+	global $humano, $orc, $vez;
+	
+	//Jogar Dado Humano;
+	$dado = rand(1, 20);
+	$pontuacaoHumano = $dado + $humano->agilidade;
+	
+	//Jogar Dado Orc;
+	$dado = rand(1, 20);
+	$pontuacaoOrc = $dado + $orc->agilidade;
+	
+	echo "<< INICIO DE JOGO >>";
+	echo "<br>";
+	echo "<br>";
+	echo "Jogando dados...";
+	echo "<br>";
+	echo "Pontuacao Humano: ".$pontuacaoHumano;
+	echo "<br>";
+	echo "Pontuacao Orc: ".$pontuacaoOrc;
+	echo "<br>";
+	echo "<br>";
+	if ($pontuacaoHumano > $pontuacaoOrc) {
+		$vez = "HUMANO";
+		echo "Humano começa o Ataque.";
+		echo "<br>";
+		echo "<br>";
+	}
+	if ($pontuacaoHumano < $pontuacaoOrc) {
+		$vez = "ORC";
+		echo "Orc começa o Ataque.";
+		echo "<br>";
+		echo "<br>";
+	}
+	if ($pontuacaoHumano == $pontuacaoOrc) {
+		echo "Empate. Jogando dados novamente...";
+		echo "<br>";
+		IniciaBatalha();
+	}
+}
+
 PrepararJogo();
+IniciaBatalha();
