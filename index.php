@@ -90,5 +90,76 @@ function IniciaBatalha()
 	}
 }
 
+function IniciaRodada()
+{
+	global $humano, $orc, $contRodada, $vez;
+	$contRodada++;
+	echo "<<< RODADA ".$contRodada." >>>";
+	echo "<br>";
+	echo "<br>";
+	
+	if ($vez == "HUMANO"){
+		echo "Humano ataca...";
+		echo "<br>";
+		//Jogar Dado Humano;
+		$dado = rand(1, 20);
+		$pontuacaoHumano = $dado + $humano->agilidade + $humano->arma->ataque;
+		echo "Pontuacao Humano: ".$pontuacaoHumano;
+		echo "<br>";
+		echo "<br>";
+		
+		echo "Orc defende...";
+		echo "<br>";
+		//Jogar Dado Orc;
+		$dado = rand(1, 20);
+		$pontuacaoOrc = $dado + $orc->agilidade + $orc->arma->defesa;
+		echo "Pontuacao Orc: ".$pontuacaoOrc;
+		echo "<br>";
+		echo "<br>";
+		
+		if ($pontuacaoHumano > $pontuacaoOrc){
+			echo "Humano é vencedor da Rodada.";
+			echo "<br>";
+			echo "<br>";
+			//CalcularDanosOrc();
+		}else{
+			echo "Orc é vencedor da Rodada.";
+			echo "<br>";
+			echo "<br>";
+		}
+		$vez = "ORC";
+	}else{
+		echo "Orc ataca...";
+		echo "<br>";
+		//Jogar Dado Orc;
+		$dado = rand(1, 20);
+		$pontuacaoOrc = $dado + $orc->agilidade + $orc->arma->ataque;
+		echo "Pontuacao Orc: ".$pontuacaoOrc;
+		echo "<br>";
+		echo "<br>";
+		
+		echo "Humano defende...";
+		echo "<br>";
+		//Jogar Dado Humano;
+		$dado = rand(1, 20);
+		$pontuacaoHumano = $dado + $humano->agilidade + $humano->arma->defesa;
+		echo "Pontuacao Humano: ".$pontuacaoHumano;
+		echo "<br>";
+		echo "<br>";
+		
+		if ($pontuacaoOrc > $pontuacaoHumano){
+			echo "Orc é vencedor da Rodada.";
+			echo "<br>";
+			echo "<br>";
+			//CalcularDanosHumano();
+		}else{
+			echo "Humano é vencedor da Rodada.";
+			echo "<br>";
+			echo "<br>";
+		}
+		$vez = "HUMANO";
+	}
+}
+
 PrepararJogo();
 IniciaBatalha();
