@@ -49,6 +49,40 @@ function PrepararJogo()
 	$contRodada = 0;
 }
 
+function CalcularDanosOrc()
+{
+	global $humano, $orc;
+	
+	//Jogar Dado Humano;
+	$dado = rand(1, $humano->arma->numeroFacesDado);
+	$pontuacaoHumano = $dado + $humano->forca;
+	
+	echo "Calculando Danos...";
+	echo "<br>";
+	echo "Vida Orc: ".$orc->vida." - ".$pontuacaoHumano;
+	$orc->vida = $orc->vida - $pontuacaoHumano;
+	echo " = ".$orc->vida;
+	echo "<br>";
+	echo "<br>";
+}
+
+function CalcularDanosHumano()
+{
+	global $orc, $humano;
+	
+	//Jogar Dado Orc;
+	$dado = rand(1, $orc->arma->numeroFacesDado);
+	$pontuacaoOrc = $dado + $orc->forca;
+	
+	echo "Calculando Danos...";
+	echo "<br>";
+	echo "Vida Humano: ".$humano->vida." - ".$pontuacaoOrc;
+	$humano->vida = $humano->vida - $pontuacaoOrc;
+	echo " = ".$humano->vida;
+	echo "<br>";
+	echo "<br>";
+}
+
 function IniciaBatalha()
 {
 	global $humano, $orc, $vez;
@@ -121,7 +155,7 @@ function IniciaRodada()
 			echo "Humano é vencedor da Rodada.";
 			echo "<br>";
 			echo "<br>";
-			//CalcularDanosOrc();
+			CalcularDanosOrc();
 		}else{
 			echo "Orc é vencedor da Rodada.";
 			echo "<br>";
@@ -151,7 +185,7 @@ function IniciaRodada()
 			echo "Orc é vencedor da Rodada.";
 			echo "<br>";
 			echo "<br>";
-			//CalcularDanosHumano();
+			CalcularDanosHumano();
 		}else{
 			echo "Humano é vencedor da Rodada.";
 			echo "<br>";
