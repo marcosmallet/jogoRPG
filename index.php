@@ -195,5 +195,29 @@ function IniciaRodada()
 	}
 }
 
+function VerificaFimJogo(){
+	global $humano, $orc;
+	
+	if ($humano->vida <= 0){
+		echo "<br>";
+		echo "Orc venceu a Batalha!";
+		echo "<br>";
+		echo "<< FIM DE JOGO >>";
+		return true;
+	}else if($orc->vida <= 0){
+		echo "<br>";
+		echo "Humano venceu a Batalha!";
+		echo "<br>";
+		echo "<< FIM DE JOGO >>";
+		return true;
+	}else{
+		return false;
+	}
+}
+
 PrepararJogo();
 IniciaBatalha();
+
+while (!VerificaFimJogo()){
+	IniciaRodada();
+}
